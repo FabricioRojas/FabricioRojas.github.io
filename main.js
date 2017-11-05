@@ -9,17 +9,22 @@ var text =  [
 ];
 
 window.addEventListener("DOMContentLoaded", function() {
-    addElement('h1', 'title', 'Fabricio Rojas');
+    addElement('h1', 'title', 'Fabricio Rojas', 0);
     var topTabElements = ""
     for (var i = 0; i < text.length; i++) {
-        var title = header[i] !== undefined ? '<div class="header"><h1>'+header[i]+'</h1><div class="underline"></div></div>' : "";
-        if (header[i] !== undefined) topTabElements += '<a href="#second"><li>'+header[i]+'</li></a>'
-        addElement('div', 'content', title + '<div class="text"><p>'+text[i]+'</p></div>');
+        var active = i<1?'class="active"':"";
+        var title = header[i] !== undefined ? '<div class="header"><h1 id="'+header[i].replace(/\s+/g, '').toLocaleLowerCase()+'">'+header[i]+'</h1><div class="underline"></div></div>' : "";
+        if (header[i] !== undefined) topTabElements += '<a href="#'+header[i].replace(/\s+/g, '').toLocaleLowerCase()+'"><li '+active+'>'+header[i]+'</li></a>'
+        addElement('div', 'content', title + '<div class="text"><p>'+text[i]+'</p></div>', i);
     }   
-    addElement('ul', 'topTab', topTabElements);
+    addElement('ul', 'topTab', topTabElements, 0);
+    document.getElementById("topTab").addEventListener("click", function(e) {
+        for(var i=0;i<this.getElementsByTagName("li").length;i++) this.getElementsByTagName("li")[i].classList.remove('active');
+        e.srcElement.classList.add('active');
+    }, false);
 }, false);
 
-function addElement(element, node, string){
+function addElement(element, node, string, i){
     var elm = document.createElement(element);
     elm.innerHTML = string; 
     document.getElementById(node).appendChild(elm);

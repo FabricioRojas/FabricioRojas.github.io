@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:400,700'); */
 
 body{
     margin: 0;
@@ -19,12 +19,16 @@ body{
 }
 #topTab li{
     height: 100%;
-    color: #000;
+    color: #FFF;
     padding: 0 10 0 10;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    background-color: #FFF;
+    background-color: #000;
+}
+.active{
+    color: #000 !important;
+    background-color: #FFF !important;
 }
 
 #mainBody{
